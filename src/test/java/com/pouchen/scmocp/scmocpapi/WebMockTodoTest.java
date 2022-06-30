@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebMvcTest(value = TodoController.class)
-public class WebMockTest2 {
+public class WebMockTodoTest {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -35,7 +35,7 @@ public class WebMockTest2 {
 	private TodoService service;
 
     @Test
-    public void list() throws Exception {
+    public void todolist() throws Exception {
         List<Todo> todos = new ArrayList<>();
         when(service.getTodo()).thenReturn(todos);
 
