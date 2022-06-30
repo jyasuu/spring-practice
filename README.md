@@ -23,4 +23,25 @@ curl localhost:8080/greeting
 
 curl localhost:8080/todo
 
+curl -X POST localhost:8080/todo?task=task1 \
+   -H 'Content-Type: application/json' \
+   -d '{"task":"task2"}'
+
+curl -X DELETE localhost:8080/todo/1 
+
+```
+
+## psql
+
+```sh
+
+apt install postgresql-client
+
+psql -h localhost -d postgres -U postgres -W
+
+\d
+
+\d todo
+
+
 ```

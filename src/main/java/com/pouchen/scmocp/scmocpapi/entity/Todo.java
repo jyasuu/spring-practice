@@ -2,14 +2,19 @@ package com.pouchen.scmocp.scmocpapi.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.Setter;
+import lombok.Builder;
+
 
 import javax.persistence.*;
 
 @Entity
 @Table
 @Getter @Setter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
