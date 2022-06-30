@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Table
 @Getter @Setter
 @NoArgsConstructor
-@ToString
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
