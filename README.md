@@ -15,3 +15,12 @@
 
 mvn test
 ```
+
+## curl test
+
+```sh
+curl localhost:8080/greeting
+
+curl localhost:8080/todo
+
+```
