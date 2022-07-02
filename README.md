@@ -12,6 +12,7 @@
 	-v /custom/mount:/var/lib/postgresql/data \
 	postgres
 
+# using root
 docker inspect postgres --format '{{.NetworkSettings.IPAddress}}' |  awk '{print $1" postgres"}' >> /etc/hosts
 
 
