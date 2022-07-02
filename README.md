@@ -12,6 +12,8 @@
 	-v /custom/mount:/var/lib/postgresql/data \
 	postgres
 
+docker inspect postgres --format '{{.NetworkSettings.IPAddress}}' |  awk '{print $1" postgres"}' >> /etc/hosts
+
 
 mvn test
 ```
@@ -37,7 +39,7 @@ curl -X DELETE localhost:8080/todo/1
 
 apt install postgresql-client
 
-psql -h localhost -d postgres -U postgres -W
+psql -h postgres -d postgres -U postgres -W
 
 \d
 
