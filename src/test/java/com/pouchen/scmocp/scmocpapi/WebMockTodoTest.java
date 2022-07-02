@@ -49,4 +49,26 @@ public class WebMockTodoTest {
 
     }
 
+    @Test
+    public void createTodo() throws Exception 
+    {
+        String task = "hello123";
+        Todo todo = Todo.builder()
+            .task(task)
+            .status(0)
+            .build();
+		when(service.create(task)).thenReturn(todo);
+
+        mockMvc.perform( MockMvcRequestBuilders
+        .post("/todo?task="+task)
+    //   .content(asJsonString(new EmployeeVO(null, "firstName4", "lastName4", "email4@mail.com")))
+        .contentType(MediaType.APPLICATION_JSON)
+        .accept(MediaType.APPLICATION_JSON)
+        )
+        // .andDo(print())
+        .andExpect(status().isCreated())
+        .andExpect(jsonPath("$.task").exists())
+        .andExpect(jsonPath("$.task").value(task));
+    }
+
 }
