@@ -1,12 +1,15 @@
 package com.pouchen.scmocp.scmocpapi;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.http.MediaType;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +39,14 @@ public class WebMockTodoTest {
 
     @Test
     public void todolist() throws Exception {
-        List<Todo> todos = new ArrayList<>();
-        when(service.getTodo()).thenReturn(todos);
+                
+        mockMvc.perform( MockMvcRequestBuilders
+        .get("/todo")
+        .accept(MediaType.APPLICATION_JSON))
+        .andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$", hasSize(0)));
 
-        mockMvc.perform(
-                get("/todo")
-        )
-                .andExpect(model().attribute("todos", equalTo(todos)));
     }
 
 }
