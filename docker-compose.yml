@@ -12,6 +12,7 @@ services:
       POSTGRES_USERNAME: postgres
     volumes:
       - write-db-data:/var/lib/postgresql/data
+      - ./write_db_init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5433:5432
     networks:
@@ -25,6 +26,7 @@ services:
       POSTGRES_USERNAME: postgres
     volumes:
       - read-db-data:/var/lib/postgresql/data
+      - ./read_db_init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5434:5432
     networks:

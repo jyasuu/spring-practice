@@ -1,0 +1,3 @@
+
+CREATE ROLE replicator WITH REPLICATION PASSWORD 'postgres' LOGIN;
+CREATE DATABASE replicator;
