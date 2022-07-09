@@ -1,0 +1,47 @@
+
+version: '3.1'
+
+
+services:
+
+  write-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USERNAME: postgres
+    volumes:
+      - write-db-data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+    networks:
+      - subnet1
+
+  read-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USERNAME: postgres
+    volumes:
+      - read-db-data:/var/lib/postgresql/data
+    ports:
+      - 5434:5432
+    networks:
+      - subnet1
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - subnet1
+
+volumes:
+  write-db-data:
+  read-db-data:
+
+networks:
+  subnet1:
+    name: practice_subnet1
