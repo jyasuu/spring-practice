@@ -14,8 +14,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
-@Configuration
-@EnableJpaRepositories(basePackages = "com.pouchen.scmocp.scmocpapi.entity",
+// @Configuration
+@EnableJpaRepositories(basePackages = "com.pouchen.scmocp.scmocpapi.dao",
         entityManagerFactoryRef = "sub2EntityManagerFactory",
         transactionManagerRef= "sub2TransactionManager")
 public class Sub2DataSourceConfiguration {
@@ -38,7 +38,7 @@ public class Sub2DataSourceConfiguration {
             EntityManagerFactoryBuilder builder) {
         return builder
                 .dataSource(cardDataSource())
-                .packages("com.pouchen.scmocp.scmocpapi.entity")
+                .packages("com.pouchen.scmocp.scmocpapi.dao")
                 .build();
     }
 

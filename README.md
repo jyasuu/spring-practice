@@ -17,6 +17,7 @@ docker inspect postgres --format '{{.NetworkSettings.IPAddress}}' |  awk '{print
 
 docker-compose up -d
 
+docker inspect spring-practice_main-db_1 --format '{{.NetworkSettings.Networks.practice_subnet1.IPAddress}}' |  awk '{print $1" spring-practice_main-db_1"}' >> /etc/hosts
 docker inspect spring-practice_read-db_1 --format '{{.NetworkSettings.Networks.practice_subnet1.IPAddress}}' |  awk '{print $1" spring-practice_read-db_1"}' >> /etc/hosts
 docker inspect spring-practice_write-db_1 --format '{{.NetworkSettings.Networks.practice_subnet1.IPAddress}}' |  awk '{print $1" spring-practice_write-db_1"}' >> /etc/hosts
 

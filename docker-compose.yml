@@ -4,6 +4,20 @@ version: '3.1'
 
 services:
 
+  main-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USERNAME: postgres
+    volumes:
+      - main-db-data:/var/lib/postgresql/data
+      - ./main_db_init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432
+    networks:
+      - subnet1
+
   write-db:
     image: postgres
     restart: always
@@ -43,6 +57,7 @@ services:
 volumes:
   write-db-data:
   read-db-data:
+  main-db-data:
 
 networks:
   subnet1:
