@@ -1,0 +1,23 @@
+
+- name: Run with inline v2 compose
+  hosts: localhost
+  gather_facts: no
+  vars:
+    playbook_dir: /workspaces/spring-practice
+  tasks:
+
+    - community.docker.docker_compose:
+        project_name: flask
+        definition:
+          version: '2'
+          services:
+            db:
+              image: postgres
+      register: output
+
+    - ansible.builtin.debug:
+        var: output
+
+    - ansible.builtin.assert:
+        that:
+          - "output.services.db.flask_db_1.state.running"
