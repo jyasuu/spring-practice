@@ -27,9 +27,39 @@ public class TodoService {
         return todoDao.save(todo);
     }
 
-    public void delete(Integer taskId) {
-        Optional<Todo> todo = todoDao.findById(taskId);
-        if(todo.isPresent())
-            todoDao.delete(todo.get());
+    public Integer create(Todo todo) {
+        Todo rltTodo = todoDao.save(todo);
+        return rltTodo.getId();
+    }
+
+    public Boolean updateTodo(Integer id,Todo todo) {
+        Optional<Todo> isExistTodo = todoDao.findById(id);
+        if (! isExistTodo.isPresent()) {
+            return false;
+        }
+        Todo newTodo = isExistTodo.get();
+        if (todo.getStatus() == null) {
+            return false;
+        }
+        newTodo.setStatus(todo.getStatus());
+        try {
+            todoDao.save(newTodo);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Boolean delete(Integer taskId) {
+        Optional<Todo> findTodo = todoDao.findById(taskId);
+        if (!findTodo.isPresent()) {
+            return false;
+        }
+        try {
+            todoDao.deleteById(taskId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
