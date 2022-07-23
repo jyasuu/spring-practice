@@ -15,37 +15,37 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 
 // @Configuration
-@EnableJpaRepositories(basePackages = "com.pouchen.scmocp.scmocpapi.dao",
-        entityManagerFactoryRef = "sub2EntityManagerFactory",
-        transactionManagerRef= "sub2TransactionManager")
-public class Sub2DataSourceConfiguration {
+// @EnableJpaRepositories(basePackages = "com.pouchen.scmocp.scmocpapi.dao",
+//         entityManagerFactoryRef = "sub2EntityManagerFactory",
+//         transactionManagerRef= "sub2TransactionManager")
+// public class Sub2DataSourceConfiguration {
 
-    @Bean
-    @ConfigurationProperties("spring.datasource.sub2")
-    public DataSourceProperties cardDataSourceProperties() {
-        return new DataSourceProperties();
-    }
+//     @Bean
+//     @ConfigurationProperties("spring.datasource.sub2")
+//     public DataSourceProperties cardDataSourceProperties() {
+//         return new DataSourceProperties();
+//     }
 
-    @Bean
-    @ConfigurationProperties("spring.datasource.sub2.configuration")
-    public DataSource cardDataSource() {
-        return cardDataSourceProperties().initializeDataSourceBuilder()
-                .type(HikariDataSource.class).build();
-    }
+//     @Bean
+//     @ConfigurationProperties("spring.datasource.sub2.configuration")
+//     public DataSource cardDataSource() {
+//         return cardDataSourceProperties().initializeDataSourceBuilder()
+//                 .type(HikariDataSource.class).build();
+//     }
 
-    @Bean(name = "sub2EntityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean sub2EntityManagerFactory(
-            EntityManagerFactoryBuilder builder) {
-        return builder
-                .dataSource(cardDataSource())
-                .packages("com.pouchen.scmocp.scmocpapi.dao")
-                .build();
-    }
+//     @Bean(name = "sub2EntityManagerFactory")
+//     public LocalContainerEntityManagerFactoryBean sub2EntityManagerFactory(
+//             EntityManagerFactoryBuilder builder) {
+//         return builder
+//                 .dataSource(cardDataSource())
+//                 .packages("com.pouchen.scmocp.scmocpapi.dao")
+//                 .build();
+//     }
 
-    @Bean
-    public PlatformTransactionManager sub2TransactionManager(
-            final @Qualifier("sub2EntityManagerFactory") LocalContainerEntityManagerFactoryBean sub2EntityManagerFactory) {
-        return new JpaTransactionManager(sub2EntityManagerFactory.getObject());
-    }
+//     @Bean
+//     public PlatformTransactionManager sub2TransactionManager(
+//             final @Qualifier("sub2EntityManagerFactory") LocalContainerEntityManagerFactoryBean sub2EntityManagerFactory) {
+//         return new JpaTransactionManager(sub2EntityManagerFactory.getObject());
+//     }
 
-}
+// }
