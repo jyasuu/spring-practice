@@ -11,16 +11,23 @@ import com.pouchen.scmocp.scmocpapi.entity.Todo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 @RequestMapping("/todo")
 public class TodoController {
+    private static final Logger logger
+                = LoggerFactory.getLogger(TodoController.class);
 
     @Autowired
 	private TodoService service;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody Iterable<Todo> getTodo() {
+        logger.info("Hi...");
+        logger.error("I am an error");
+        logger.warn("Warning!.");
 		return service.getTodo();
 	}
 
